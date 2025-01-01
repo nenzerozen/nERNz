@@ -1,0 +1,48 @@
+{
+    "response": [{
+        "blog_id": 1,
+        "subject": "GIFT 1",
+        "icon": "fab fa-itunes-note",
+        "image": "assets/images/Zodiac_Card.jpg"
+    },{  
+        "blog_id": 2,
+        "subject": "GIFT 2",
+        "icon": "fab fa-itunes-note",
+        "image": "assets/images/Zodiac_Card.jpg"
+    },{  
+        "blog_id": 3,
+        "subject": "GIFT 3",
+        "icon": "fab fa-itunes-note",
+        "image": "assets/images/Zodiac_Card.jpg"
+    },{ 
+        "blog_id": 4,
+        "subject": "GIFT 4",
+        "icon": "",
+        "image": "assets/images/Zodiac_Card.jpg"
+    },{ 
+        "blog_id": 5,
+        "subject": "GIFT 5",
+        "icon": "",
+        "image": "assets/images/Zodiac_Card.jpg"
+    },{ 
+        "blog_id": 6,
+        "subject": "GIFT 6",
+        "icon": "",
+        "image": "assets/images/Zodiac_Card.jpg"
+    },{ 
+        "blog_id": 7,
+        "subject": "GIFT 7",
+        "icon": "",
+        "image": "assets/images/Zodiac_Card.jpg"
+    },{ 
+        "blog_id": 8,
+        "subject": "GIFT 8",
+        "icon": "",
+        "image": "assets/images/Zodiac_Card.jpg"
+    },{ 
+        "blog_id": 9,
+        "subject": "GIFT 9",
+        "icon": "",
+        "image": "assets/images/Zodiac_Card.jpg"
+    }]
+}

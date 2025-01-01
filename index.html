@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD ERN</title>
+    <!-- CSS Only -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/Ern_Logo.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mali">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body style="background-color: rgb(31, 31, 31);">
+    <div id="app">
+        <navbar-component :auth="auth"></navbar-component>
+
+        <header class="page-header d-flex align-items-center" >
+            <div class="container" v-if="auth.data">
+                <h1 class="fw-bold"> {{subject}} </h1>
+                <h2>{{ title }}</h2>
+            </div>
+        </header>
+
+        <section class="container">
+            <div class="row justify-content-center">
+                <section class="col-12 col-md-8">
+                    <img src="assets/images/Ern_Logo.jpg" class="avatar" alt="">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1">
+                        <span class="input-group-tex btn btn-outline-info" id="basic-addon1">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </div>
+                </section>
+            </div>
+            <div class="row text-center py-5 g-3" v-if="auth.data">
+                <blog-component v-for="blog in blogs.slice(0, 9)" :key="blog.blog_id" :blog="blog"></blog-component>
+            </div>
+        </section>
+
+        <!-- {{auth}} -->
+
+        <footer-component></footer-component>
+
+    </div>
+
+
+
+    <!-- JavaScript and dependencies -->
+    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="node_modules/http-vue-loader/src/httpVueLoader.js"></script>
+    <script src="node_modules/axios/dist/axios.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const AUTH_DATA = localStorage.getItem('auth_data')
+        const AUTH_TOKEN = localStorage.getItem('auth_token')
+
+        new Vue({
+            el: "#app",
+            components: {
+                'navbar-component': httpVueLoader('./components/navbar.vue'),
+                'blog-component': httpVueLoader('./components/blog.vue'),
+                'footer-component': httpVueLoader('./components/footer.vue')
+            },
+            data () {
+                return {
+                    subject: "Happy Birthday ERN",
+                    title: "These are the presents for you",
+                    blogs: null,
+                    auth: {
+                        token: AUTH_TOKEN,
+                        data: AUTH_DATA
+                    }
+                }
+            },
+            mounted() {
+                this.getBlogs()
+            },
+            methods: {
+                getBlogs() {
+                    axios({
+                        method: 'GET',
+                        url: 'service/api/blog'
+                    }).then((resp) => {
+                        this.blogs = resp.data.response
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
+

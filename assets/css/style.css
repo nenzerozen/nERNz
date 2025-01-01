@@ -1,0 +1,238 @@
+/* Table of Content */
+/* 
+   Section Global
+   Section Header
+   Section Navbar
+   Section Card
+   Section Star
+   Section Footer
+   Section ProgressBar
+
+*/
+
+/* Section Global */
+้  html, body{
+    font-family: 'Mali', cursive;
+} 
+  .bg{
+    background: #fb86d2;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    clip-path: polygon(0 0, 55% 0, 45% 100%, 0% 100%);
+  }
+/* Section Header */
+    .page-header{
+        height: 400px;
+        background-image: url(../images/Hill_Horizontal.jpg);
+        background-size: cover;
+        background-position: left;
+        text-align: center;
+        color: #fff;
+    }
+
+    .avatar{
+        display: block;
+        width: 160px;
+        height: 160px;
+        margin: -60px auto 10px;
+        border-radius: 50%;
+        box-shadow: 1px 11px 16px rgb(0, 0, 0, 20%);
+    }
+
+    /* Section Profile */
+.profile-page {
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(245,182,250,1) 100%) !important;
+}
+.profile-page .cover {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.33) 0px 0px 10px;
+    height: 460px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 991px) {
+    .profile-page .cover {
+        height: 350px;
+    }
+}
+
+/* Section Navbar */
+    .navbar-dark .navbar-nav .nav-link {
+        color: rgb(255, 255, 255, 80%);
+    } 
+
+    .navbar-dark .navbar-nav .nav-link:focus, 
+    .navbar-dark .navbar-nav .nav-link:hover,
+    .navbar-dark .navbar-nav .active > .nav-link {
+        color: rgb(255, 255, 255);
+        font-weight: 900;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: rgb(0, 0, 0, 80%);
+    } 
+
+    .navbar-light .navbar-nav .nav-link:focus, 
+    .navbar-light .navbar-nav .nav-link:hover,
+    .navbar-light .navbar-nav .active > .nav-link {
+        color: rgb(0, 0, 0);
+        font-weight: 900;
+    }
+
+    .navbar ul li{
+        line-height: 2;
+        cursor: pointer;
+    }
+    
+    .profile-img{
+        border-radius: 50%;
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+        object-fit: cover;
+    }
+    
+    .navbar li.dropdown{
+        background: #bfdcf54d;
+        border-radius: 30px;
+        padding: 0 5px;
+    }
+    
+    .navbar li.dropdown:hover{
+        background: #eef7ffa6;
+        transition: 0.2s;
+    }
+    
+    .navbar a:hover{
+        transform: scale(0.96);
+    }
+    
+    .ul-navbar{
+        float: right;
+        border-radius: 30px;
+    }
+    
+    @media (max-width: 767px) {
+        .ul-navbar{
+            background:#f8f9fa;
+        }
+        .ul-navbar a{
+            text-align: right;
+            color:#000 !important;
+        }
+    }
+
+    /* Section Card */
+    .card-wrapper{
+        border: 0;
+        box-shadow: 0 5px 23px rgb(103 103 103 / 0.5);
+        border-radius: 25px;
+        padding: 10px;
+        height: 100%;
+    }
+
+    .card-image{
+        margin-bottom: -1rem;
+    }
+
+    .card-image .image-overlay{
+        width: 70px;
+        height: 70px;
+        margin-top: -15px;
+        border-radius: 50%;
+        box-shadow: 0px 3px 24px rgb(0 0 0 / 0.1);
+        
+
+    }
+
+    /* Section Star */
+    .star-rating{
+        color: gold;
+        font-size: 0.9em;
+        position: relative;
+        display: inline-block;
+    }
+
+    .star-current{
+        position: absolute;
+        top: 0;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    /* Section Footer */
+    .site-footer{
+        background-color: #262722;
+        color: #737373;
+        padding: 45px;
+    }
+
+    .site-footer h6{
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    .site-footer a{
+        color: #737373;
+        text-decoration: none;
+    }
+
+    .site-footer a:hover{
+        color: #fff;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding-left: 0;
+        line-height: 30px;
+    }
+
+/* Section ProgressBar */
+.progressContainer{
+    left: 0;
+    width: 100%;
+    height: 0.4em;
+    margin-bottom: 0px;
+    position: fixed;
+    bottom: 0;
+    overflow: hidden;
+    background-color: #fff;
+    content: "";
+    display: table;
+    table-layout: fixed;
+    z-index: 9999;
+}
+
+.progressBar{
+    width: 0%;
+    float: left;
+    height: 100%;
+    z-index: 9999;
+    max-width: 100%;
+    background-color: rgb(255, 27, 179);
+    -webkit-transition: width .6s ease;
+    -o-transition: width .6s ease;
+    transition: width .6s ease;
+}
+
+/* Section Profile List */
+    .list-profile .list-group-item{
+        padding: 20px 10px;
+        font-size: 18px;
+        border: 0;
+    }
+
+    .list-profile .list-group-item.active{
+        color: #171717;
+        background-color: #ffffff;
+        border-color: var(--bs-list-group-active-border-color);
+        font-weight: 600;
+        border-bottom: 2px solid #ff00de !important;
+    }
+
+    .list-profile{
+        top: 85px;
+    }

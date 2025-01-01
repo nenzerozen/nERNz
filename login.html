@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn Page</title>
+    <!-- CSS Only -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/Ern_Logo.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mali">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="bg"></div>
+        <div id="login" class="container">
+            <div class="row justify-content-center align-items-center vh-100">
+                <div class="col-md-6">
+                    <div class="card p-3 p-lg shadow">
+                        <div class="card-title"> 
+                            <img src="assets/images/Erniverse_TextLogo.png" class="img-fluid d-block mx-auto" alt="logo">
+                        </div>
+                        <div class="card-body">
+                            <form @submit.prevent="submitLogin">
+                                <div class="mb-3 row">
+                                    <label for="username" class="col-sm-3 col-form-label">Username</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="username" v-model="auth.username" class="form-control" placeholder="user">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="password" class="col-sm-3 col-form-label">Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" id="password" v-model="auth.password"class="form-control" placeholder="pass">
+                                    </div>
+                                </div>
+                                <div class="d-grid mb-3">
+                                <button class="btn btn-primary"> Log In </button>
+                                </div>
+                                <p class="text-center">
+                                    No user account? <a href="register.html"> Create new account </a> <br>
+                                    <small><a href="./"> Go back home </a></small>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript and dependencies -->
+    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="node_modules/axios/dist/axios.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                auth: {
+                    username: null,
+                    password: null
+                }
+            }
+        },
+        methods: {
+            submitLogin() {
+                alert(this.auth.username + ': LogIn Completed')
+                localStorage.setItem('auth_token', 'nERNz')
+                localStorage.setItem('auth_data', this.auth.username)
+                location.assign('./')
+            }
+            
+        }
+    }) 
+</script>
+
+</body>
+</html>

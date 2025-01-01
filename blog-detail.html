@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD ERN</title>
+    <!-- CSS Only -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/Ern_Logo.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mali">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body style="background-color: rgb(31, 31, 31);">
+
+    <div id="app">
+
+        <navbar-component :auth="auth"></navbar-component>
+
+        <section class="container my-5" v-if="blog">
+            <div class="row justify-content-center">
+                <div>_</div>
+                <div>_</div>
+                <div>_</div>
+
+                <div class="col-lg-8 text-primary fw-bold">
+                    <nav aria-label="breadcrumb" class="mt-5">
+                    </nav>
+                    
+                    <div class="row justify-content-center">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">{{blog.subject}}</li>
+                        </ol>
+                        <img :src="blog.pic" alt="">
+                        
+                    </div>
+                </div>
+                <div>
+                        
+                        <br>
+                        <br>
+                        <div class="row">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item text-warning">
+                                    <a href="./">{{ blog.blog_id === 9 ? 'MESSAGE' : 'TITLE' }}</a>
+                                </li>
+                                <li class="breadcrumb-item active text-warning" aria-current="page">{{ blog.subtitle }}</li>
+                            </ol>
+
+                            <!-- {{blog.audio}}> -->                            
+                            <audio controls v-if="blog.blog_id !== 9">
+                                <source :src="blog.audio" type="audio/mp3">                           
+                            </audio>
+                               
+
+                                <!-- <source src="https://audio.jukehost.co.uk/RgJ6Wh6Gyv5FgvfIc5Hvau9IuZR9tk3i" type="audio/mp3"> -->
+                            <!-- <Audio Content> -->                           
+
+                        </div>
+                        <br>
+                        <br>
+                    <!-- Content -->
+                    <div class="text-primary text-center" v-html="blog.detail"></div>
+                    <!-- Content -->    
+                </div>
+            </div>
+        </section>
+
+        <footer-component></footer-component>
+
+        <div class="progressContainer">
+            <div class="progressBar">
+            </div>
+        </div>
+
+    </div>
+    <!-- JavaScript and dependencies -->
+    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="node_modules/http-vue-loader/src/httpVueLoader.js"></script>
+    <script src="node_modules/axios/dist/axios.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const AUTH_DATA = localStorage.getItem('auth_data')
+        const AUTH_TOKEN = localStorage.getItem('auth_token')
+        new Vue({
+            el: "#app",
+            components: {
+                'navbar-component': httpVueLoader('./components/navbar.vue'),
+                'footer-component': httpVueLoader('./components/footer.vue')
+            },
+            data () {
+                return {
+                    auth: {
+                        token: AUTH_TOKEN,
+                        data: AUTH_DATA
+                    },
+                    blog: null
+                }
+            },
+            mounted() {
+                this.getBlog()
+            },
+            methods: {
+                getBlog() {
+                    const urlParams = new URLSearchParams(window.location.search)
+                    axios.get('service/api/blog/detail', {
+                        params: {
+                            id: urlParams.get('id'),
+                            url: urlParams.get('url')
+                        }
+                    }).then((resp) => {
+                        this.blog = resp.data.response
+                        
+                    }) 
+                }
+            }
+        })
+    </script>
+</body>
+</html>

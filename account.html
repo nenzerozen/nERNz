@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <!-- CSS Only -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/Ern_Logo.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mali">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div id="app">
+
+        <navbar-component :auth="auth"></navbar-component>
+
+        <!-- Profile Header -->
+        <section class="profile-page d-flex align-items-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-11">
+                        <img class="cover" src="assets/images/uploads/Ern_red.jpg" alt="cover">   
+                    </div>
+                    <div class="col-12 col-lg-11">
+                        <img class="avatar" src="assets/images/uploads/Earn_Avatar.png" alt="avatar">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container text-center">
+            <h1 class="font-weight-bolder" > Zupaksil Kusol </h1>
+            <h4 class="text-mute"> I'M RED!!! </h4>
+            <hr class="w-75 mx-auto">
+        </section>
+
+        <!-- Personal Data -->
+        <section class="container mb-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-11">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="list-group list-profile sticky-top">
+                                <a href="profile.html" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-user"></i> Personal Data
+                                </a>
+                                <a href="account.html" class="list-group-item list-group-item-action active">
+                                    <i class="fas fa-user-cog"></i> Account Setting
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="card border-0">
+                                <div class="card-body">
+                                    <form class="row gy-4">
+                                        <p class="card-title">
+                                            Username: <span class=" fw-bold">Zupaksil Kusol</span>
+                                        </p>
+                                        <hr>
+                                        <p>Change Password:</p>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Fill current password">
+                                        </div> 
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Fill new password">
+                                        </div> 
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Repeat new password">
+                                        </div> 
+                                        <button type="submit" class="btn btn-danger">Change Password</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer-component></footer-component>
+        
+    </div>
+    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="node_modules/http-vue-loader/src/httpVueLoader.js"></script>
+    <script src="node_modules/axios/dist/axios.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const AUTH_DATA = localStorage.getItem('auth_data')
+        const AUTH_TOKEN = localStorage.getItem('auth_token')
+
+        new Vue({
+            el: "#app",
+            components: {
+                'navbar-component': httpVueLoader('./components/navbar.vue'),
+                'footer-component': httpVueLoader('./components/footer.vue')
+            },
+            data () {
+                return {
+                    auth: {
+                        token: AUTH_TOKEN,
+                        data: AUTH_DATA
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
